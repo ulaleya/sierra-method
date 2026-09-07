@@ -10,6 +10,7 @@ description <https://fireforce6.github.io/mission-control/system-analysis/compon
         base:description "Wildfire Detection Payload"
         base:isContainedBy FireSat
     ]
+    
 
     instance Platform : component:Component [
         base:description "Spacecraft Bus"
@@ -832,7 +833,30 @@ description <https://fireforce6.github.io/mission-control/system-analysis/compon
         base:description "Payload Data Processing Unit"
         base:isContainedBy ElectronicsSegment
     ]
+instance AIWardenInterface : component:Component [
+    base:description "AI Fire Warden Interface"
+    base:isContainedBy PayloadProcessor
+]
 
+instance FireCloudInterface : component:Component [
+    base:description "Fire Cloud Data Interface"
+    base:isContainedBy PayloadProcessor
+]
+
+instance FireSpreadProcessor : component:Component [
+    base:description "Fire Spread Analysis Processor"
+    base:isContainedBy PayloadProcessor
+]
+
+instance MissionDataBuffer : component:Component [
+    base:description "Mission Data Buffer"
+    base:isContainedBy PayloadProcessor
+]
+
+instance SuppressionPlanner : component:Component [
+    base:description "Fire Suppression Planning Processor"
+    base:isContainedBy PayloadProcessor
+]
     instance ImageProcessor : component:Component [
         base:description "FPGA Image Processor"
         base:isContainedBy PayloadProcessor
