@@ -1,0 +1,82 @@
+@dc:title "Waterline Construction Vocabulary"
+@dc:description "Vocabulary for modeling municipal waterline construction and installation."
+
+vocabulary <https://waterline.project/waterline-construction/waterline#> as waterline {
+
+    extends <http://purl.org/dc/elements/1.1/> as dc
+    extends <https://www.modelware.io/sierra/component#> as component
+    extends <https://www.modelware.io/sierra/process#> as process
+    extends <https://www.modelware.io/sierra/stakeholder#> as stakeholder
+    extends <https://www.modelware.io/sierra/base#> as base
+
+    concept WaterlineComponent < component:Component
+
+    concept Pipe < WaterlineComponent
+
+    concept Fitting < WaterlineComponent
+
+    concept Valve < WaterlineComponent
+
+    concept Hydrant < WaterlineComponent
+
+     concept InstallationActivity < process:Activity
+
+    concept InspectionActivity < process:Activity
+
+    concept TestingActivity < process:Activity
+
+    concept CriticalWaterlineRequirement = stakeholder:Requirement [
+        restricts base:priority to "High"
+    ]
+
+    scalar VerificationStatus [
+        oneOf "Pending", "Complete"
+    ]
+
+    scalar property verificationStatus [
+        domain WaterlineComponent
+        range VerificationStatus
+        functional
+    ]
+
+    relation appliesToComponent [
+        from stakeholder:Requirement
+        to WaterlineComponent
+        reverse hasApplicableRequirement
+    ]
+
+    relation appliesToActivity [
+        from stakeholder:Requirement
+        to InstallationActivity
+        reverse hasApplicableRequirementForActivity
+    ]
+     relation requiresInspection [
+        from WaterlineComponent
+        to InspectionActivity
+        reverse isRequiredInspectionFor
+    ]
+
+    relation requiresTesting [
+        from WaterlineComponent
+        to TestingActivity
+        reverse isRequiredTestingFor
+    ]
+
+    relation installs [
+        from InstallationActivity
+        to WaterlineComponent
+        reverse isInstalledBy
+        functional
+    ]
+
+    relation requiresVerification [
+        from stakeholder:Requirement
+        to InspectionActivity
+    ]
+
+    rule RequirementVerification [
+        appliesToComponent(r,c) &
+        requiresInspection(c,i)
+        -> requiresVerification(r,i)
+    ]
+}

@@ -41,6 +41,62 @@ Replace GITHUB, YOUR_ORGANIZATION, and YOUR_FORKED_REPOSITORY with the actual va
 1. In Vs Code, choose File -> Open Folder ... -> Navigate to the clone folder
 2. Click on the README (this document) then on the green **Start** button above.
 
+# Waterline Construction Project
+
+## Project Overview
+
+The Waterline Construction project models a representative municipal waterline construction and installation system using the Sierra Method and OML. The model focuses on relationships among waterline components, installation activities, construction requirements, inspections, testing, and verification.
+
+The model includes representative waterline components such as pipes, fittings, valves, and hydrants. It also models installation, inspection, and testing activities so that construction requirements can be traced to the components and activities to which they apply.
+
+The project was developed to support the business questions established for the waterline construction project, including requirement applicability, required inspections and testing, change impacts, verification status, and traceability from requirements through verification.
+
+## Model Organization
+
+The Waterline Construction OML files are located in:
+
+`src/model/oml/waterline.project/waterline-construction/`
+
+The project contains the following files:
+
+- `waterline.oml` — Defines the Waterline Construction vocabulary, including waterline components, construction activities, relationships, property characteristics, a defined concept, and a reasoning rule.
+- `vocabulary-bundle.oml` — Bundles the Waterline Construction vocabulary with the Sierra vocabularies used by the model.
+- `waterline-description.oml` — Contains representative instances, including a pipe segment, installation activity, bedding inspection, pressure test, and construction requirement.
+- `description-bundle.oml` — Bundles the Waterline Construction descriptions for reasoning.
+
+The Waterline Construction model reuses Sierra concepts for components, processes, stakeholders, and requirements while adding terminology specific to municipal waterline construction.
+
+## Reasoning Features
+
+The model demonstrates several OML reasoning capabilities, including:
+
+- Property characteristics such as functional properties.
+- Disjointness and closure through the vocabulary bundle.
+- A defined `CriticalWaterlineRequirement` concept that allows the reasoner to classify high-priority requirements.
+- A `RequirementVerification` rule that derives a verification relationship between a requirement and an inspection when the requirement applies to a component that requires that inspection.
+
+For example, `BeddingRequirement_01` is asserted with a priority of `"High"`. The reasoner classifies it as a `CriticalWaterlineRequirement`. The reasoning rule also derives that `BeddingRequirement_01` requires `BeddingInspection_01` for verification.
+
+## Build and Validate
+
+From the root of the `sierra-method` repository, run:
+
+```powershell
+oml lint
+```
+
+This checks the OML files for syntax and modeling errors.
+
+Then run:
+
+```powershell
+oml reason
+```
+
+This performs reasoning across the model and generates entailment artifacts in the `build/owl` directory.
+
+A successful build should complete without lint errors or reasoning inconsistencies.
+
 # Copyrights and Licenses
 
-This content is copyrighted to. Modelware Solutions LLC. To obtain a license, contact [Modelware](emailto:info@modelware.io).
+This content is copyrighted to Modelware Solutions LLC. To obtain a license, contact [Modelware](mailto:info@modelware.io).

@@ -61,5 +61,4 @@ vocabulary <https://www.modelware.io/sierra/component#> as component {
         to base:Item
         reverse isTransferedBy
     ]
-
 }

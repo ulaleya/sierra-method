@@ -1,0 +1,10 @@
+@dc:title "Waterline Construction Description Bundle"
+@dc:description "A bundle that includes all descriptions in the Waterline Construction project."
+
+description bundle <https://waterline.project/waterline-construction/description-bundle#> as d-bundle {
+
+    uses <http://purl.org/dc/elements/1.1/> as dc
+    uses <https://waterline.project/waterline-construction/vocabulary-bundle#>
+
+    includes <https://waterline.project/waterline-construction/waterline-description#>
+}

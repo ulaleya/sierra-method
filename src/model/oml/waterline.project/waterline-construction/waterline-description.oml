@@ -1,0 +1,38 @@
+@dc:title "Waterline Construction Description"
+@dc:description "Description of a representative municipal waterline construction installation."
+
+description <https://waterline.project/waterline-construction/waterline-description#> as waterline-desc {
+
+    uses <http://purl.org/dc/elements/1.1/> as dc
+    uses <https://www.modelware.io/sierra/base#> as base
+    uses <https://www.modelware.io/sierra/stakeholder#> as stakeholder
+    uses <https://waterline.project/waterline-construction/waterline#> as waterline
+
+    instance PipeSegment_01 : waterline:Pipe [
+        base:description "Representative installed waterline pipe segment"
+        waterline:verificationStatus "Pending"
+        waterline:requiresInspection BeddingInspection_01
+        waterline:requiresTesting PressureTest_01
+    ]
+
+    instance PipeInstallation_01 : waterline:InstallationActivity [
+        base:description "Installation of Pipe Segment 01"
+        waterline:installs PipeSegment_01
+    ]
+
+    instance BeddingInspection_01 : waterline:InspectionActivity [
+        base:description "Inspection of pipe bedding prior to completion of installation"
+    ]
+
+    instance PressureTest_01 : waterline:TestingActivity [
+        base:description "Pressure testing of the installed waterline pipe"
+    ]
+
+    instance BeddingRequirement_01 : stakeholder:Requirement [
+        base:description "Pipe Bedding Requirement"
+        base:expression "Waterline pipe shall be installed on bedding meeting the project requirements."
+        base:priority "High"
+        waterline:appliesToComponent PipeSegment_01
+        waterline:appliesToActivity PipeInstallation_01
+    ]
+}
