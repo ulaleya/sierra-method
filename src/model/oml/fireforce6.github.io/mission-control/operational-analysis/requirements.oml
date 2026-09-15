@@ -61,4 +61,21 @@ description <https://fireforce6.github.io/mission-control/operational-analysis/r
         base:category "L2"
         base:priority "Medium"
     ]
+
+    instance R8 : stakeholder:Requirement [
+        base:description "Systems Engineer"
+        base:expression "The system shall process Fire Coud data to support near-real-time fire spread analysis."
+        stakeholder:isStatedBy stakeholders:Operator
+        base:category "L1"
+        base:priority "Medium"
+    ]
+
+    instance R9 : stakeholder:Requirement [
+        base:description "CommandCenter"
+        base:expression "The system shall provide suppression recommendations for human approval before high-priority actions."
+        stakeholder:isStatedBy stakeholders:Operator
+        base:category "L2"
+        base:priority "Medium"
+    ]
+
 }

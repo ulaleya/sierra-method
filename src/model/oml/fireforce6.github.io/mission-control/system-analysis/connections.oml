@@ -70,4 +70,30 @@ description <https://fireforce6.github.io/mission-control/system-analysis/connec
         component:transfers TelemetrySignal
     ]
 
+    ref instance components:FireCloudInterface [
+        component:hasPort FireCloudInterface.Data_In
+    ]
+    instance FireCloudInterface.Data_in : component:Port [
+        component:direction "In"
+    ]
+
+    ref instance components:AIWardenInterface [
+        component:hasPort AIWardenInterface.Command_Out
+    ]
+    instance AIWardenInterface.Command_Out : component:Port [
+        component:direction "Out"
+    ]
+
+    relation instance Conn_FireCloud_to_FireSpreadProcessor : component:Connection [
+        from FireCloud.Data_Out
+        to FireSpreadProcessor.Data_In
+        component:transferes FireCloudData
+    ]
+
+    relation instance Conn_SuppressionPlanner_to_AIWardenInterface : component:Connection [
+        from SuppressionPlanner.Command_Out
+        to AIWardenInterface.Command_In
+        component:transfers SuppressionCommand
+    ]
+    
 }
