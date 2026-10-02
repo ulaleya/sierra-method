@@ -79,4 +79,10 @@ vocabulary <https://waterline.project/waterline-construction/waterline#> as wate
         requiresInspection(c,i)
         -> requiresVerification(r,i)
     ]
+
+    rule InstallationRequirementApplicability [
+        appliesToComponent(r,c) &
+        installs(a,c)
+        -> appliesToActivity(r,a)
+    ]
 }

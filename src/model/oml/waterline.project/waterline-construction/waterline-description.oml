@@ -1,12 +1,11 @@
 @dc:title "Waterline Construction Description"
 @dc:description "Description of a representative municipal waterline construction installation."
-
 description <https://waterline.project/waterline-construction/waterline-description#> as waterline-desc {
-
     uses <http://purl.org/dc/elements/1.1/> as dc
     uses <https://www.modelware.io/sierra/base#> as base
     uses <https://www.modelware.io/sierra/stakeholder#> as stakeholder
     uses <https://waterline.project/waterline-construction/waterline#> as waterline
+    uses <http://www.w3.org/2000/01/rdf-schema#> as rdfs
 
     instance PipeSegment_01 : waterline:Pipe [
         base:description "Representative installed waterline pipe segment"
@@ -34,5 +33,59 @@ description <https://waterline.project/waterline-construction/waterline-descript
         base:priority "High"
         waterline:appliesToComponent PipeSegment_01
         waterline:appliesToActivity PipeInstallation_01
+    ]
+
+    @rdfs:label "Fitting 01"
+    instance Fitting_01 : waterline:Fitting [
+        base:description "Fitting connecting the installed waterline pipe segment to the valve assembly"
+        waterline:verificationStatus "Pending"
+    ]
+
+    @rdfs:label "Fitting 02"
+    instance Fitting_02 : waterline:Fitting [
+        base:description "Fitting connecting two waterline pipe segments"
+        waterline:verificationStatus "Pending"
+    ]
+
+    @rdfs:label "Valve 01"
+    instance Valve_01 : waterline:Valve [
+        base:description "Isolation valve installed to control water flow through the waterline"
+        waterline:verificationStatus "Pending"
+    ]
+
+    @rdfs:label "Hydrant 01"
+    instance Hydrant_01 : waterline:Hydrant [
+        base:description "Fire hydrant connected to the municipal waterline"
+        waterline:verificationStatus "Pending"
+    ]
+
+    @rdfs:label "Valve Installation 01"
+    instance ValveInstallation_01 : waterline:InstallationActivity [
+        base:description "Installation of Valve 01"
+    ]
+
+    @rdfs:label "Hydrant Installation 01"
+    instance HydrantInstallation_01 : waterline:InstallationActivity [
+        base:description "Installation of Hydrant 01"
+    ]
+
+    @rdfs:label "Valve Inspection 01"
+    instance ValveInspection_01 : waterline:InspectionActivity [
+        base:description "Inspection of Valve 01 following installation"
+    ]
+
+    @rdfs:label "Hydrant Inspection 01"
+    instance HydrantInspection_01 : waterline:InspectionActivity [
+        base:description "Inspection of Hydrant 01 following installation"
+    ]
+
+    @rdfs:label "Valve Test 01"
+    instance ValveTest_01 : waterline:TestingActivity [
+        base:description "Operational testing of Valve 01 following installation"
+    ]
+
+    @rdfs:label "Hydrant Test 01"
+    instance HydrantTest_01 : waterline:TestingActivity [
+        base:description "Operational testing of Hydrant 01 following installation"
     ]
 }
