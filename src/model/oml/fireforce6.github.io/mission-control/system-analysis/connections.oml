@@ -104,7 +104,7 @@ description <https://fireforce6.github.io/mission-control/system-analysis/connec
         component:hasPort FireCloudInterface.Data_In
     ]
 
-    instance FireCloudInterface.Data_in : component:Port [
+    instance FireCloudInterface.Data_In : component:Port [
         component:direction "In"
     ]
 
@@ -114,18 +114,6 @@ description <https://fireforce6.github.io/mission-control/system-analysis/connec
 
     instance AIWardenInterface.Command_Out : component:Port [
         component:direction "Out"
-    ]
-
-    relation instance Conn_FireCloud_to_FireSpreadProcessor : component:Connection [
-        from FireCloud.Data_Out
-        to FireSpreadProcessor.Data_In
-        component:transferes FireCloudData
-    ]
-
-    relation instance Conn_SuppressionPlanner_to_AIWardenInterface : component:Connection [
-        from SuppressionPlanner.Command_Out
-        to AIWardenInterface.Command_In
-        component:transfers SuppressionCommand
     ]
 
     instance FireSpreadProcessor.Data_In : component:Port [
