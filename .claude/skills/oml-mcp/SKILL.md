@@ -45,6 +45,17 @@ Use `oml_sparql` for filtered, aggregated, or multi-hop results once you know th
 
 Hint: Only if a query you *expected* to return data comes back empty, run one diagnostic probe before changing query logic: `SELECT ?s ?p ?o WHERE { ?s <pred> ?o } LIMIT 5`. Empty probe = wrong predicate IRI. Non-empty probe = query logic is the problem. An empty result that is itself the answer needs no probe.
 
+## Scope and request fidelity
+
+When planning ontology updates:
+
+- Make only the changes explicitly requested by the user or required for model validity.
+- Preserve the exact property requested by the user. Do not substitute a different property merely because it appears in similar instances.
+- Use `oml_shapes` to confirm that the requested property is valid for the target instance type.
+- Do not add unrelated relationships, priorities, categories, or applicability assignments.
+- If a requested property is not supported by the model, explain the limitation rather than silently substituting another property.
+- After updating, verify that the changes match the user's request and report any additional changes required for validity.
+
 ## Update ontologies workflow
 
 1. Retrieve context first:

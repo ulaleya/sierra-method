@@ -29,6 +29,21 @@ Use this skill when the answer depends on the OML source files themselves rather
 4. Escalate to MCP when it becomes the better tool.
 If the question turns into model navigation, validation, or structured querying and MCP is available, switch to the `oml-mcp` skill.
 
+## Scope Control and Property Accuracy
+When modifying OML source files:
+
+1. Make only the changes explicitly requested by the user. Do not add unrelated relationships, priorities, categories, or component assignments unless required for model validity.
+
+2. Preserve the requested property exactly. For example, if the user requests a base:description, do not substitute base:expression even if the existing model uses expressions for similar information.
+
+3. Inspect existing vocabulary definitions and nearby instances before selecting properties or relationships.
+
+4. Do not create stakeholder-to-requirement relationships before the user requests them.
+
+5. After editing, review the Git diff to confirm that every addition directly supports the request.
+
+6. Run oml lint and report validation results separately from whether the requested changes were completed.
+
 ## Repository heuristics
 - Source OML files are typically under `src/model/oml/`.
 - Built artifacts are under `build/` and should not be the default source for answers.
